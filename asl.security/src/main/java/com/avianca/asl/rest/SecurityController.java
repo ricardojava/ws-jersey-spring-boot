@@ -1,5 +1,6 @@
 package com.avianca.asl.rest;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,12 @@ import com.avianca.asl.domain.Token;
 import com.avianca.asl.domain.User;
 import com.avianca.asl.service.LoginService;
 import com.google.gson.Gson;
+import com.nimbusds.jose.JOSEException;
+import com.nimbusds.jose.JWSAlgorithm;
+import com.nimbusds.jose.JWSHeader;
+import com.nimbusds.jose.JWSObject;
+import com.nimbusds.jose.Payload;
+import com.nimbusds.jose.crypto.MACSigner;
 
 
 /**
@@ -50,7 +57,26 @@ public class SecurityController {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}		
+		
+		JWSObject jwsObject = new JWSObject(new JWSHeader(JWSAlgorithm.HS256),new Payload(user+pwd));
+        byte[] sharedKey = new byte[32];
+        new SecureRandom().nextBytes(sharedKey);		
+		try {
+			jwsObject.sign(new MACSigner(sharedKey));
+			//jwsObject.serialize();
+			authorization.getToken().setNumToken(jwsObject.serialize());
+			
+		} catch (JOSEException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+
+//Output to URL-safe format
+jwsObject.serialize();
+		
+		
+		
 		
 		
 		List list = new ArrayList<>();

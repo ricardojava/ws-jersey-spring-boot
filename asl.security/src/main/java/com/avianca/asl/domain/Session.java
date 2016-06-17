@@ -16,31 +16,19 @@ public class Session implements Serializable{
 	private static final long serialVersionUID = 8661629808784155829L;
 	private String idSession;
 	LocalDateTime dateTimeAtual = LocalDateTime.now();
-	private int minute;	
+	//private int minute;	
 	
 	
 	public String getIdSession() {
 		return idSession;
 	}
-	public Session() {		
-		LocalDateTime dateTimeAtual = LocalDateTime.now();
-		setMinute(dateTimeAtual.getMinute());
-		
-	}
+	
 	public void setIdSession(String idSession) {
 		this.idSession = idSession;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	public int getMinute() {
-		return minute;
-	}
-	public void setMinute(int minute) {
-		this.minute = minute;
-	}
-	
-	
 
 }
 
