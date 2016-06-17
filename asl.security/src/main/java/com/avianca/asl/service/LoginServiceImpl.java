@@ -1,5 +1,7 @@
 package com.avianca.asl.service;
 
+import org.springframework.stereotype.Component;
+
 import com.avianca.asl.domain.Authorization;
 import com.avianca.asl.domain.Session;
 import com.avianca.asl.domain.Token;
@@ -11,6 +13,8 @@ import com.avianca.asl.domain.User;
  * @since 16/06/2016
  * @version 1.0.0
  */
+
+@Component(value="loginServiceImpl")
 public class LoginServiceImpl implements LoginService{
 
 	@Override
