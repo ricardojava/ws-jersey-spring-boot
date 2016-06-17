@@ -63,8 +63,7 @@ public class SecurityController {
         byte[] sharedKey = new byte[32];
         new SecureRandom().nextBytes(sharedKey);		
 		try {
-			jwsObject.sign(new MACSigner(sharedKey));
-			//jwsObject.serialize();
+			jwsObject.sign(new MACSigner(sharedKey));			
 			authorization.getToken().setNumToken(jwsObject.serialize());
 			
 		} catch (JOSEException e) {
