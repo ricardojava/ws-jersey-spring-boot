@@ -12,6 +12,7 @@ public class Authorization implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Token token;
 	private Session session;
+	
 
 	public Authorization(Token token, Session session) {
 		super();

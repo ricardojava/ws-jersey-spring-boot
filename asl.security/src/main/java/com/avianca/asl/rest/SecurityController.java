@@ -97,7 +97,7 @@ jwsObject.serialize();
     @GET
     @Path("/test/")
     public String message() {
-        return "XABARACUNAIA";
+        return "Salamaleico";
     }
 
 }
